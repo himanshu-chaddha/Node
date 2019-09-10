@@ -2,9 +2,19 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-
+const mongoose = require("mongoose");
+const MONGO_ATLAS_PW = "himanshuChaddha";
 const productRoutes = require("./api/routes/product");
 const orderRoutes = require("./api/routes/orders");
+// console.log(process.env.MONGO_ATLAS_PW);
+
+mongoose.connect(
+  "mongodb+srv://himanshuChaddha:" +
+    MONGO_ATLAS_PW +
+    "@node-rest-api-ph7v6.mongodb.net/test?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
+mongoose.Promise = global.Promise;
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
