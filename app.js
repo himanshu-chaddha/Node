@@ -3,8 +3,7 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-
-const MONGO_ATLAS_PW = "himanshuChaddha";
+require("custom-env").env("envname");
 
 const productRoutes = require("./api/routes/product");
 const orderRoutes = require("./api/routes/orders");
@@ -13,7 +12,7 @@ const userRoutes = require("./api/routes/user");
 
 mongoose.connect(
   "mongodb+srv://himanshuChaddha:" +
-    MONGO_ATLAS_PW +
+    process.env.MONGO_ATLAS_PW +
     "@node-rest-api-ph7v6.mongodb.net/ShareApp?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
